@@ -1,29 +1,18 @@
 <?php
     session_start();
-    include_once("connect.php");
+    include_once("../DB/connect.php");
 
     //define variables and set to empty values
-    $id = $firstName = $lastName = $dateOfBirth = $website = $degree = $phone = $email = $city = $image = $details = $location = $map = $facebook_icons = $instagram_icons = $twitter_icons = $skype_icons = $password = ""; $imgUpload=0;
+    $cId = $clientName = $projectURL = $projectDate = $image = $shortDesc = ""; $imgUpload = 0;
 
     //Registration Form Submit
     if(isset($_POST['submit'])){
-        $id = $_POST['id'];
-        $firstName = $_POST['firstName'];
-        $lastName = $_POST['lastName'];
-        $dateOfBirth = $_POST['dateOfBirth'];
-        $website = $_POST['website'];
-        $degree = $_POST['degree'];
-        $phone = $_POST['phone'];
-        $email = $_POST['email'];
-        $city = $_POST['city'];
-        $details = $_POST['details'];
-        $location = $_POST['location'];
-        $map = $_POST['map'];
-        $facebook_icons = $_POST['facebook_icons'];
-        $instagram_icons = $_POST['instagram_icons'];
-        $twitter_icons = $_POST['twitter_icons'];
-        $skype_icons = $_POST['skype_icons'];
-        $password = $_POST['password'];
+        $cdId = $_POST['id'];
+        $clientName = $_POST['clientName'];
+        $projectURL = $_POST['projectURL'];
+        $projectDate = $_POST['projectDate'];
+        $shortDesc = $_POST['shortDesc'];
+        // $description = $_POST['description'];
 
         // Image upload and save file
         if(isset($_FILES['image'])){
@@ -33,42 +22,32 @@
             $file_type = $_FILES['image']['type'];
     
             //Image upload and set in folder
-            if(move_uploaded_file($file_tmp,"../photos/"  .$file_name)){
+            if(move_uploaded_file($file_tmp,"../photos/category/"  .$file_name)){
                 echo "Successfully Uploaded.";
-                $imgUpload=0;
+                $imgUpload=1;
             }else{
                 echo  "Could not upload the file.";
-                $imgUpload=1;
+                $imgUpload=2;
             }
-            // echo $sql; die();
         }
 
         //MySQLi Procedural
         // Update Query
-        $sql = "UPDATE biodb
-        SET firstName = '".$firstName."',
-        lastName = '".$lastName."',
-        dateOfBirth = '".$dateOfBirth."',
-        website = '".$website."',
-        degree = '".$degree."',
-        phone = '".$phone."',
-        email = '".$email."',
-        city = '".$city."',
-        details = '".$details."',
-        location = '".$location."',
-        map = '".$map."',
-        facebook_icons = '".$facebook_icons."',
-        instagram_icons = '".$instagram_icons."',
-        twitter_icons = '".$twitter_icons."',
-        skype_icons = '".$facebook_icons."',";
+        $sql = "UPDATE categorydetails
+        SET clientName = '".$clientName."',
+        projectURL = '".$projectURL."',
+        projectDate = '".$projectDate."',
+        shortDesc = '".$shortDesc."',";
         if($imgUpload==0){$sql .= "image='".$file_name."',";}
-        $sql .="email = '".$email."'
-        WHERE id = '$id'";
+        $sql .="clientName = '".$clientName."'
+        WHERE cdId = '$cdId'";
+        // echo $sql; die();
 
         
         if (mysqli_query($conn, $sql)) {
+            //echo $sql; die();
             echo "New record updated successfully";
-            header("Location: ../Dashboard/index.php");
+            header("Location: ../Dashboard/catlist.php");
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }

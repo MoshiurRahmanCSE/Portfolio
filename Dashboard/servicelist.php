@@ -1,10 +1,4 @@
-<?php 
-    session_start();
-    include_once("../DB/connect.php");
-    if(isset($_GET["id"])){
-        $cdId = $_GET["id"]; 
-    }
-?>
+<?php include_once("../DB/connect.php");?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -96,17 +90,6 @@
                                             <a class="nav-link" href="register.php">Register</a> 
                                         </nav>
                                     </div>
-                                    <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.html">401 Page</a>
-                                            <a class="nav-link" href="404.html">404 Page</a>
-                                            <a class="nav-link" href="500.html">500 Page</a>
-                                        </nav>
-                                    </div> -->
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagescollapseLayouts" aria-expanded="false" aria-controls="pagescollapseLayouts">
@@ -120,6 +103,17 @@
                                     <a class="nav-link" href="catlist.php">Category List</a>
                                 </nav>
                             </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagescollapseLayout" aria-expanded="false" aria-controls="pagescollapseLayout">
+                                <div class="sb-nav-link-icon"><i class="fas fa-server"></i></div>
+                                Service
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="pagescollapseLayout" aria-labelledby="heading" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="service.php">Service Insert</a>
+                                    <a class="nav-link" href="servicelist.php">Service List</a>
+                                </nav>
+                            </div>
                             <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="charts.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
@@ -131,94 +125,66 @@
                             </a>
                         </div>
                     </div>
-                    <!-- <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
-                    </div> -->
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Portfoio Update</h1>
+                        <h1 class="mt-4">Service Details</h1>
                         <div class="col-md-12">
-                            <div class="form">
-                                <form method="POST" action="../DB/catupdateaction.php" enctype="multipart/form-data">  
-                                    <div class="row">                                   
-                                        <div class="col-md-12">
-                                            <div class="input-field">
-                                                <div class="mb-3 row">
-                                                    <label for="categoryid" class="col-sm-2 col-form-label">Category</label>
-                                                    <div class="col-sm-4">
-                                                        <select class="form-select" name="categoryid" required>
-                                                            <?php
-                                                                $sql = "SELECT * FROM categorydb WHERE status = 1";
-                                                                $result = mysqli_query($conn, $sql);
-                                                                while($row = mysqli_fetch_assoc($result)){
-                                                                    ?>
-                                                                    <option value="<?php echo $row["cId"];?>"<?php if($row["cId"]==$row["cId"]){echo ' selected';}?>><?php echo $row["cName"];?></option>
-                                                                    <?php
-                                                                }                                                            
-                                                            ?>
-                                                        </select>
-                                                    </div>
-                                                </div>                                         
-                                                <!-- <div class="mb-3 row">
-                                                    <label for="title" class="col-sm-2 col-form-label">Title</label>
-                                                    <div class="col-sm-10">
-                                                    <input type="text" name="title"  class="form-control" placeholder="Write the Title name">
-                                                    </div>
-                                                </div> -->
-                                                <div class="mb-3 row">
-                                                    <?php
-                                                        $sql1 = "SELECT * FROM categorydetails WHERE cdId = $cdId";
-                                                        $res = mysqli_query($conn, $sql1);
-                                                        $row= mysqli_fetch_assoc($res); 
-                                                    ?>
-                                                    <label for="clientName" class="col-sm-2 col-form-label">Client Name</label>
-                                                    <div class="col-sm-10">
-                                                    <input type="text" name="clientName"  class="form-control" placeholder="Client Name" value="<?php echo $row["clientName"];?>">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="projectURL" class="col-sm-2 col-form-label">Project URL</label>
-                                                    <div class="col-sm-10">
-                                                    <input type="text" name="projectURL"  class="form-control"  placeholder="www.example.com" value="<?php echo $row["projectURL"];?>">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="projectDate" class="col-sm-2 col-form-label">Project Date</label>
-                                                    <div class="col-sm-10">
-                                                    <input type="date" name="projectDate"  class="form-control" placeholder="Project Date" value="<?php echo $row["projectDate"];?>">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="shortDesc" class="col-sm-2 col-form-label">Short Description</label>
-                                                    <div class="col-sm-10">
-                                                    <textarea type="text" name="shortDesc" class="form-control" placeholder="Write short Description" rows="3"><?php echo $row["shortDesc"];?></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="decription" class="col-sm-2 col-form-label">Description</label>
-                                                    <div class="col-sm-10">
-                                                    <textarea type="text" name="decription" class="form-control" placeholder="Write Description" rows="4"><?php echo $row["decription"];?></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="image" class="col-sm-2 col-form-label">Image</label>
-                                                    <div class="col-sm-10">
-                                                    <img src="../photos/category/<?php echo $row["image"];?>" height="100" width="100" alt="<?php echo $row["image"];?>" title="<?php echo $row["image"];?>"/>
-                                                    <input class="form-control" type="file" id="image" name="image">
-                                                    </div>
-                                                </div>
-                                                <div class="d-grid">
-                                                    <input type="hidden" name="id" value="<?php echo $cdId;?>">
-                                                    <button type="submit" name="submit" class="update" value="update">Update</button>
-                                                </div>   
-                                            </div>
-                                        </div>
-                                    </div> 
-                                </form>
+                            <div class="input-field">
+                                <!-- Inner Join Start-->
+                                <?php
+                                    $sql = "SELECT * FROM servicedb";
+                                    $result = mysqli_query($conn, $sql);
+                                    if (mysqli_query($conn, $sql)) {
+                                    } else {
+                                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                                    }
+                                ?>
+                                <!-- Inner Join End-->
+                                <table class="table table-striped table-bordered" style="width:100%" id="datatable">
+                                    <thead>
+                                        <tr>
+                                            <th>Service Id</th>
+                                            <th>Service Name</th>
+                                            <th>Service Details</th>
+                                            <th>Image</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>                                    
+                                    <tbody>
+                                        <?php
+                                            if (mysqli_num_rows($result) > 0) {
+                                                // output data of each row    
+                                                while($row = mysqli_fetch_assoc($result)) {
+                                        ?>
+                                            <tr>  
+                                                <td><?php echo $row["sId"];?></td>          
+                                                <td><?php echo $row["sName"];?></td>
+                                                <td><?php echo $row["sdetails"];?></td>
+                                                <td><img src="../photos/service/<?php echo $row["image"];?>" height="100" width="100" alt="<?php echo $row["sName"];?>" title="<?php echo $row["sName"];?>"/></td>
+                                                <td>
+                                                    <a href="serviceupdate.php?id=<?php echo $row["sId"];?>">
+                                                        <button>Update</button>
+                                                    </a>
+                                                    <a href="servicedelete.php?id=<?php echo $row["sId"];?>">
+                                                        <button>Delete</button>
+                                                    </a> 
+                                                </td>
+                                            </tr>
+                                        <?php }}   ?>
+                                    </tbody>
+                                    <!-- <tfoot>
+                                        <tr>
+                                            <th>Service Id</th>
+                                            <th>Service Name</th>
+                                            <th>Service Details</th>
+                                            <th>Image</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </tfoot> -->
+                                </table>
                             </div>
                         </div>
                     </div>

@@ -103,6 +103,17 @@
                                     <a class="nav-link" href="catlist.php">Category List</a>
                                 </nav>
                             </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagescollapseLayout" aria-expanded="false" aria-controls="pagescollapseLayout">
+                                <div class="sb-nav-link-icon"><i class="fas fa-server"></i></div>
+                                Service
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="pagescollapseLayout" aria-labelledby="heading" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="service.php">Service Insert</a>
+                                    <a class="nav-link" href="servicelist.php">Service List</a>
+                                </nav>
+                            </div>
                             <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="charts.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
@@ -121,70 +132,62 @@
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Portfolio Details</h1>
                         <div class="col-md-12">
-                            <div class="form">
-                                <form method="POST" action="" enctype="multipart/form-data">
-                                    <div class="row">                                   
-                                        <div class="col-md-12">
-                                            <div class="input-field">
-                                                <!-- Inner Join Start-->
-                                                <?php
-                                                    $sql = "SELECT cdId, categorydb.cName, categorydb.cId, clientName, projectURL, projectDate, image, shortDesc, decription FROM categorydetails INNER JOIN categorydb ON categorydb.cId = categorydetails.cId";
-                                                    // echo $sql; die();
-                                                    $result = mysqli_query($conn, $sql);
-                                                    if (mysqli_query($conn, $sql)) {
-                                                    } else {
-                                                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-                                                    }
-                                                ?>
-                                                <!-- Inner Join End-->
-                                                <table class="table table-striped table-bordered" style="width:100%" id="datatable">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Details Id</th>
-                                                            <th>Category Name</th>
-                                                            <th>Client Name</th>
-                                                            <th>Project Date</th>
-                                                            <th>Image</th>
-                                                            <th>Status</th>
-                                                        </tr>
-                                                    </thead>                                    
-                                                    <tbody>
-                                                        <?php
-                                                            if (mysqli_num_rows($result) > 0) {
-                                                                // output data of each row    
-                                                                while($row = mysqli_fetch_assoc($result)) {
-                                                        ?>
-                                                            <tr>  
-                                                                <td><?php echo $row["cdId"];?></td>          
-                                                                <td><?php echo $row["cName"];?></td>
-                                                                <td><?php echo $row["clientName"];?></td>
-                                                                <td><?php echo $row["projectDate"];?></td>
-                                                                <td><img src="../photos/category/<?php echo $row["image"];?>" height="100" width="100" alt="<?php echo $row["clientName"];?>" title="<?php echo $row["clientName"];?>"/></td>
-                                                                <td>
-                                                                    <a href="catupdate.php?id=<?php echo $row["cdId"];?>">
-                                                                        <button>Update</button>
-                                                                    </a>
-                                                                    <a href="catdelete.php?id=<?php echo $row["cId"];?>">
-                                                                        <button>Delete</button>
-                                                                    </a> 
-                                                                </td>
-                                                            </tr>
-                                                        <?php }}   ?>
-                                                    </tbody>
-                                                    <!-- <tfoot>
-                                                        <tr>
-                                                            <th>Details Id</th>
-                                                            <th>Category Name</th>
-                                                            <th>Client Name</th>
-                                                            <th>Project Date</th>
-                                                            <th>Image</th>
-                                                        </tr>
-                                                    </tfoot> -->
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                </form>
+                            <div class="input-field">
+                                <!-- Inner Join Start-->
+                                <?php
+                                    $sql = "SELECT cdId, categorydb.cName, categorydb.cId, clientName, projectURL, projectDate, image, shortDesc, decription FROM categorydetails INNER JOIN categorydb ON categorydb.cId = categorydetails.cId";
+                                    // echo $sql; die();
+                                    $result = mysqli_query($conn, $sql);
+                                    if (mysqli_query($conn, $sql)) {
+                                    } else {
+                                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                                    }
+                                ?>
+                                <!-- Inner Join End-->
+                                <table class="table table-striped table-bordered" style="width:100%" id="datatable">
+                                    <thead>
+                                        <tr>
+                                            <th>Details Id</th>
+                                            <th>Category Name</th>
+                                            <th>Client Name</th>
+                                            <th>Project Date</th>
+                                            <th>Image</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>                                    
+                                    <tbody>
+                                        <?php
+                                            if (mysqli_num_rows($result) > 0) {
+                                                // output data of each row    
+                                                while($row = mysqli_fetch_assoc($result)) {
+                                        ?>
+                                            <tr>  
+                                                <td><?php echo $row["cdId"];?></td>          
+                                                <td><?php echo $row["cName"];?></td>
+                                                <td><?php echo $row["clientName"];?></td>
+                                                <td><?php echo $row["projectDate"];?></td>
+                                                <td><img src="../photos/category/<?php echo $row["image"];?>" height="100" width="100" alt="<?php echo $row["clientName"];?>" title="<?php echo $row["clientName"];?>"/></td>
+                                                <td>
+                                                    <a href="catupdate.php?id=<?php echo $row["cdId"];?>">
+                                                        <button>Update</button>
+                                                    </a>
+                                                    <a href="catdelete.php?id=<?php echo $row["cId"];?>">
+                                                        <button>Delete</button>
+                                                    </a> 
+                                                </td>
+                                            </tr>
+                                        <?php }}   ?>
+                                    </tbody>
+                                    <!-- <tfoot>
+                                        <tr>
+                                            <th>Details Id</th>
+                                            <th>Category Name</th>
+                                            <th>Client Name</th>
+                                            <th>Project Date</th>
+                                            <th>Image</th>
+                                        </tr>
+                                    </tfoot> -->
+                                </table>
                             </div>
                         </div>
                     </div>

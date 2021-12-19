@@ -1,9 +1,9 @@
 <?php 
-    session_start();
     include_once("../DB/connect.php");
     if(isset($_GET["id"])){
-        $cdId = $_GET["id"]; 
+        $sId = $_GET["id"];     
     }
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -120,6 +120,17 @@
                                     <a class="nav-link" href="catlist.php">Category List</a>
                                 </nav>
                             </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagescollapseLayout" aria-expanded="false" aria-controls="pagescollapseLayout">
+                                <div class="sb-nav-link-icon"><i class="fas fa-server"></i></div>
+                                Service
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="pagescollapseLayout" aria-labelledby="heading" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="service.php">Service Insert</a>
+                                    <a class="nav-link" href="servicelist.php">Service List</a>
+                                </nav>
+                            </div>
                             <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="charts.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
@@ -140,81 +151,18 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Portfoio Update</h1>
+                        <h1 class="mt-4">Update Service Information</h1>
                         <div class="col-md-12">
                             <div class="form">
-                                <form method="POST" action="../DB/catupdateaction.php" enctype="multipart/form-data">  
+                                <form method="POST" action="../DB/servicDeteleaction.php" enctype="multipart/form-data">  
                                     <div class="row">                                   
                                         <div class="col-md-12">
-                                            <div class="input-field">
-                                                <div class="mb-3 row">
-                                                    <label for="categoryid" class="col-sm-2 col-form-label">Category</label>
-                                                    <div class="col-sm-4">
-                                                        <select class="form-select" name="categoryid" required>
-                                                            <?php
-                                                                $sql = "SELECT * FROM categorydb WHERE status = 1";
-                                                                $result = mysqli_query($conn, $sql);
-                                                                while($row = mysqli_fetch_assoc($result)){
-                                                                    ?>
-                                                                    <option value="<?php echo $row["cId"];?>"<?php if($row["cId"]==$row["cId"]){echo ' selected';}?>><?php echo $row["cName"];?></option>
-                                                                    <?php
-                                                                }                                                            
-                                                            ?>
-                                                        </select>
-                                                    </div>
-                                                </div>                                         
-                                                <!-- <div class="mb-3 row">
-                                                    <label for="title" class="col-sm-2 col-form-label">Title</label>
-                                                    <div class="col-sm-10">
-                                                    <input type="text" name="title"  class="form-control" placeholder="Write the Title name">
-                                                    </div>
-                                                </div> -->
-                                                <div class="mb-3 row">
-                                                    <?php
-                                                        $sql1 = "SELECT * FROM categorydetails WHERE cdId = $cdId";
-                                                        $res = mysqli_query($conn, $sql1);
-                                                        $row= mysqli_fetch_assoc($res); 
-                                                    ?>
-                                                    <label for="clientName" class="col-sm-2 col-form-label">Client Name</label>
-                                                    <div class="col-sm-10">
-                                                    <input type="text" name="clientName"  class="form-control" placeholder="Client Name" value="<?php echo $row["clientName"];?>">
-                                                    </div>
+                                            <div class="input">
+                                                <div class="form  d-flex justify-content-center">
+                                                    <form method="POST" action="servicelist.php" enctype="multipart/form-data">  
+                                                        <input type="submit" name="submit" value="Delete">  
+                                                    </form>
                                                 </div>
-                                                <div class="mb-3 row">
-                                                    <label for="projectURL" class="col-sm-2 col-form-label">Project URL</label>
-                                                    <div class="col-sm-10">
-                                                    <input type="text" name="projectURL"  class="form-control"  placeholder="www.example.com" value="<?php echo $row["projectURL"];?>">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="projectDate" class="col-sm-2 col-form-label">Project Date</label>
-                                                    <div class="col-sm-10">
-                                                    <input type="date" name="projectDate"  class="form-control" placeholder="Project Date" value="<?php echo $row["projectDate"];?>">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="shortDesc" class="col-sm-2 col-form-label">Short Description</label>
-                                                    <div class="col-sm-10">
-                                                    <textarea type="text" name="shortDesc" class="form-control" placeholder="Write short Description" rows="3"><?php echo $row["shortDesc"];?></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="decription" class="col-sm-2 col-form-label">Description</label>
-                                                    <div class="col-sm-10">
-                                                    <textarea type="text" name="decription" class="form-control" placeholder="Write Description" rows="4"><?php echo $row["decription"];?></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="image" class="col-sm-2 col-form-label">Image</label>
-                                                    <div class="col-sm-10">
-                                                    <img src="../photos/category/<?php echo $row["image"];?>" height="100" width="100" alt="<?php echo $row["image"];?>" title="<?php echo $row["image"];?>"/>
-                                                    <input class="form-control" type="file" id="image" name="image">
-                                                    </div>
-                                                </div>
-                                                <div class="d-grid">
-                                                    <input type="hidden" name="id" value="<?php echo $cdId;?>">
-                                                    <button type="submit" name="submit" class="update" value="update">Update</button>
-                                                </div>   
                                             </div>
                                         </div>
                                     </div> 

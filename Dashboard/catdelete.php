@@ -1,10 +1,20 @@
-<?php 
-    session_start();
+<?php
     include_once("../DB/connect.php");
     if(isset($_GET["id"])){
-        $cdId = $_GET["id"]; 
+        $cId = $_GET["id"];
+        // echo $id;
+        $sql = "DELETE FROM categorydetails WHERE cId= $cId";
+        $result = mysqli_query($conn, $sql);
+        // $row = mysqli_fetch_assoc($result); 
+
+        if (mysqli_query($conn, $sql)) {
+            // echo "Record deleted successfully";
+          } else {
+            echo "Error deleting record: " . mysqli_error($conn);
+          }
     }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -140,85 +150,14 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Portfoio Update</h1>
+                        <h1 class="mt-4 d-flex justify-content-center">Portfoio Information Delete</h1>
                         <div class="col-md-12">
-                            <div class="form">
-                                <form method="POST" action="../DB/catupdateaction.php" enctype="multipart/form-data">  
-                                    <div class="row">                                   
-                                        <div class="col-md-12">
-                                            <div class="input-field">
-                                                <div class="mb-3 row">
-                                                    <label for="categoryid" class="col-sm-2 col-form-label">Category</label>
-                                                    <div class="col-sm-4">
-                                                        <select class="form-select" name="categoryid" required>
-                                                            <?php
-                                                                $sql = "SELECT * FROM categorydb WHERE status = 1";
-                                                                $result = mysqli_query($conn, $sql);
-                                                                while($row = mysqli_fetch_assoc($result)){
-                                                                    ?>
-                                                                    <option value="<?php echo $row["cId"];?>"<?php if($row["cId"]==$row["cId"]){echo ' selected';}?>><?php echo $row["cName"];?></option>
-                                                                    <?php
-                                                                }                                                            
-                                                            ?>
-                                                        </select>
-                                                    </div>
-                                                </div>                                         
-                                                <!-- <div class="mb-3 row">
-                                                    <label for="title" class="col-sm-2 col-form-label">Title</label>
-                                                    <div class="col-sm-10">
-                                                    <input type="text" name="title"  class="form-control" placeholder="Write the Title name">
-                                                    </div>
-                                                </div> -->
-                                                <div class="mb-3 row">
-                                                    <?php
-                                                        $sql1 = "SELECT * FROM categorydetails WHERE cdId = $cdId";
-                                                        $res = mysqli_query($conn, $sql1);
-                                                        $row= mysqli_fetch_assoc($res); 
-                                                    ?>
-                                                    <label for="clientName" class="col-sm-2 col-form-label">Client Name</label>
-                                                    <div class="col-sm-10">
-                                                    <input type="text" name="clientName"  class="form-control" placeholder="Client Name" value="<?php echo $row["clientName"];?>">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="projectURL" class="col-sm-2 col-form-label">Project URL</label>
-                                                    <div class="col-sm-10">
-                                                    <input type="text" name="projectURL"  class="form-control"  placeholder="www.example.com" value="<?php echo $row["projectURL"];?>">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="projectDate" class="col-sm-2 col-form-label">Project Date</label>
-                                                    <div class="col-sm-10">
-                                                    <input type="date" name="projectDate"  class="form-control" placeholder="Project Date" value="<?php echo $row["projectDate"];?>">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="shortDesc" class="col-sm-2 col-form-label">Short Description</label>
-                                                    <div class="col-sm-10">
-                                                    <textarea type="text" name="shortDesc" class="form-control" placeholder="Write short Description" rows="3"><?php echo $row["shortDesc"];?></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="decription" class="col-sm-2 col-form-label">Description</label>
-                                                    <div class="col-sm-10">
-                                                    <textarea type="text" name="decription" class="form-control" placeholder="Write Description" rows="4"><?php echo $row["decription"];?></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="image" class="col-sm-2 col-form-label">Image</label>
-                                                    <div class="col-sm-10">
-                                                    <img src="../photos/category/<?php echo $row["image"];?>" height="100" width="100" alt="<?php echo $row["image"];?>" title="<?php echo $row["image"];?>"/>
-                                                    <input class="form-control" type="file" id="image" name="image">
-                                                    </div>
-                                                </div>
-                                                <div class="d-grid">
-                                                    <input type="hidden" name="id" value="<?php echo $cdId;?>">
-                                                    <button type="submit" name="submit" class="update" value="update">Update</button>
-                                                </div>   
-                                            </div>
-                                        </div>
-                                    </div> 
-                                </form>
+                            <div class="input">
+                                <div class="form  d-flex justify-content-center">
+                                    <form method="POST" action="catlist.php" enctype="multipart/form-data">  
+                                        <input type="submit" name="submit" value="Delete">  
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
