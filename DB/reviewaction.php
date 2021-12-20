@@ -1,12 +1,12 @@
 <?php
     include_once("connect.php");
     // define variables and set to empty values
-    $sId = $sName = $sdetails = $image = "";
+    $reNameBn = $reDesignation = $reComment = $image = "";
 
     if (isset($_POST['submit'])){      
-        $sId = $_POST['sId'];
-        $sName = $_POST['sName'];
-        $sdetails = $_POST['sdetails'];
+        $reNameBn = $_POST['reNameBn'];
+        $reDesignation = $_POST['reDesignation'];
+        $reComment = $_POST['reComment'];
 
         // Image upload and save file
         if(isset($_FILES['image'])){
@@ -16,7 +16,7 @@
           $file_type = $_FILES['image']['type'];
     
           //Image upload and set in folder
-          if(move_uploaded_file($file_tmp,"../photos/service/"  . $file_name)){
+          if(move_uploaded_file($file_tmp,"../photos/review/"  . $file_name)){
             echo "Successfully Uploaded.";
           }else{
             echo  "Could not upload the file.";
@@ -24,14 +24,14 @@
         }        
         //MySQLi Procedural
         // Insert Query
-        $sql = "DELETE FROM servicedb WHERE id= $sId";
-        
+        $sql = "INSERT INTO reviewdb (reNameBn, reDesignation, reComment, image) VALUES ('".$reNameBn."','".$reDesignation."','".$reComment."','".$file_name."')";
+        // echo $sql;die();
         if (mysqli_query($conn,$sql)) {
           echo "New record created successfully";
-          header("Location:  ../Dashboard/servicelist.php");
+          header("Location:  ../Dashboard/reviewlist.php");
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
-        //echo $sql; die();
+        // echo $sql; die();
       }
 ?>

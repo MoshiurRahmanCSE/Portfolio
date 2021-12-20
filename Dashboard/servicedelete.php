@@ -1,9 +1,18 @@
 <?php 
     include_once("../DB/connect.php");
     if(isset($_GET["id"])){
-        $sId = $_GET["id"];     
-    }
-   
+        $sId = $_GET["id"];
+
+        $sql = "DELETE FROM servicedb WHERE sId= $sId";
+        $result = mysqli_query($conn, $sql);
+        // $row = mysqli_fetch_assoc($result); 
+
+        if (mysqli_query($conn, $sql)) {
+            // echo "Record deleted successfully";
+          } else {
+            echo "Error deleting record: " . mysqli_error($conn);
+          }
+    }   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -154,19 +163,13 @@
                         <h1 class="mt-4">Update Service Information</h1>
                         <div class="col-md-12">
                             <div class="form">
-                                <form method="POST" action="../DB/servicDeteleaction.php" enctype="multipart/form-data">  
-                                    <div class="row">                                   
-                                        <div class="col-md-12">
-                                            <div class="input">
-                                                <div class="form  d-flex justify-content-center">
-                                                    <form method="POST" action="servicelist.php" enctype="multipart/form-data">  
-                                                        <input type="submit" name="submit" value="Delete">  
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                </form>
+                                <div class="input">
+                                    <div class="form  d-flex justify-content-center">
+                                        <form method="POST" action="servicelist.php" enctype="multipart/form-data">  
+                                            <input type="submit" name="submit" value="Delete">  
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

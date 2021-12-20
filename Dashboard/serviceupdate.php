@@ -131,6 +131,17 @@
                                     <a class="nav-link" href="servicelist.php">Service List</a>
                                 </nav>
                             </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagescollapseLayout1" aria-expanded="false" aria-controls="pagescollapseLayout1">
+                                <div class="sb-nav-link-icon"><i class="fab fa-readme"></i></div>
+                                Review / Testimonial
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="pagescollapseLayout1" aria-labelledby="heading" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="review.php">Review Insert</a>
+                                    <a class="nav-link" href="reviewlist.php">Review List</a>
+                                </nav>
+                            </div>
                             <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="charts.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
@@ -184,7 +195,7 @@
                                                 </div>
                                                 <div class="d-grid">
                                                     <input type="hidden" name="id" value="<?php echo $sId;?>">
-                                                    <button type="submit" name="submit" class="submit">Upload</button>
+                                                    <button type="submit" name="submit" class="submit" value="update">Upload</button>
                                                 </div>   
                                             </div>
                                         </div>

@@ -3,7 +3,7 @@
     if(isset($_GET["id"])){
         $cId = $_GET["id"];
         // echo $id;
-        $sql = "DELETE FROM categorydetails WHERE cId= $cId";
+        $sql = "DELETE FROM categorydetails WHERE cId = $cId";
         $result = mysqli_query($conn, $sql);
         // $row = mysqli_fetch_assoc($result); 
 
