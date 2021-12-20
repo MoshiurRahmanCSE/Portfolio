@@ -1,10 +1,4 @@
-<?php 
-    include_once("../DB/connect.php");
-    if(isset($_GET["id"])){
-        $sId = $_GET["id"];     
-    }
-   
-?>
+<?php include_once("../DB/connect.php");?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -96,17 +90,6 @@
                                             <a class="nav-link" href="register.php">Register</a> 
                                         </nav>
                                     </div>
-                                    <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.html">401 Page</a>
-                                            <a class="nav-link" href="404.html">404 Page</a>
-                                            <a class="nav-link" href="500.html">500 Page</a>
-                                        </nav>
-                                    </div> -->
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagescollapseLayouts" aria-expanded="false" aria-controls="pagescollapseLayouts">
@@ -153,54 +136,75 @@
                             </a>
                         </div>
                     </div>
-                    <!-- <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
-                    </div> -->
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Update Service Information</h1>
+                        <h1 class="mt-4">Resume Information Details</h1>
                         <div class="col-md-12">
-                            <div class="form">
-                                <form method="POST" action="../DB/servicUpdateeaction.php" enctype="multipart/form-data">  
-                                    <div class="row">                                   
-                                        <div class="col-md-12">
-                                            <div class="input-field">
-                                                <?php
-                                                    $sql = "SELECT * FROM servicedb WHERE sId = $sId";
-                                                    $res = mysqli_query($conn, $sql);
-                                                    $row = mysqli_fetch_assoc($res);
-                                                ?>
-                                                <div class="mb-3 row">
-                                                    <label for="sName" class="col-sm-2 col-form-label">Service Name</label>
-                                                    <div class="col-sm-10">
-                                                    <input type="text" name="sName"  class="form-control" placeholder="Service Name" value="<?php echo $row["sName"];?>">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="sdetails" class="col-sm-2 col-form-label">Service Details</label>
-                                                    <div class="col-sm-10">
-                                                    <textarea type="text" name="sdetails" class="form-control" placeholder="Service Details" rows="3"><?php echo $row["sdetails"];?></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="image" class="col-sm-2 col-form-label">Image</label>
-                                                    <div class="col-sm-10">
-                                                        <img src="../photos/service/<?php echo $row["image"];?>" height="100" width="100" alt="<?php echo $row["image"];?>" title="<?php echo $row["image"];?>"/>
-                                                        <input class="form-control" type="file" id="image" name="image">
-                                                    </div>
-                                                </div>
-                                                <div class="d-grid">
-                                                    <input type="hidden" name="id" value="<?php echo $sId;?>">
-                                                    <button type="submit" name="submit" class="submit" value="update">Upload</button>
-                                                </div>   
-                                            </div>
-                                        </div>
-                                    </div> 
-                                </form>
+                            <div class="input-field">
+                                <!-- Insert query Start-->
+                                <?php
+                                    $sql = "SELECT * FROM resumedb";
+                                    $result = mysqli_query($conn, $sql);
+                                    if (mysqli_query($conn, $sql)) {
+                                    } else {
+                                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                                    }
+                                ?>
+                                <!-- Insert query End-->
+                                <table class="table table-striped table-bordered" style="width:100%" id="datatable">
+                                    <thead>
+                                        <tr>
+                                            <th>Resume Id</th>
+                                            <th>Resume Head</th>
+                                            <th>Resume Title</th>
+                                            <th>Resume Start Year</th>
+                                            <th>Resume End Year</th>
+                                            <th>Resume Name</th>
+                                            <th>Resume Details</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>                                    
+                                    <tbody>
+                                        <?php
+                                            if (mysqli_num_rows($result) > 0) {
+                                                // output data of each row    
+                                                while($row = mysqli_fetch_assoc($result)) {
+                                        ?>
+                                            <tr>  
+                                                <td><?php echo $row["rId"];?></td>          
+                                                <td><?php echo $row["rHead"];?></td>
+                                                <td><?php echo $row["rTitle"];?></td>
+                                                <td><?php echo $row["rStartyear"];?></td>
+                                                <td><?php echo $row["rEndyears"];?></td>
+                                                <td><?php echo $row["rname"];?></td>
+                                                <td><?php echo $row["rdetails"];?></td>
+                                                <td>
+                                                    <a href="resumeupdate.php?id=<?php echo $row["rId"];?>">
+                                                        <button>Update</button>
+                                                    </a>
+                                                    <a href="resumedelete.php?id=<?php echo $row["rId"];?>">
+                                                        <button>Delete</button>
+                                                    </a> 
+                                                </td>
+                                            </tr>
+                                        <?php }}   ?>
+                                    </tbody>
+                                    <!-- <tfoot>
+                                        <tr>
+                                            <th>Resume Id</th>
+                                            <th>Resume Head</th>
+                                            <th>Resume Title</th>
+                                            <th>Resume Start Year</th>
+                                            <th>Resume End Year</th>
+                                            <th>Resume Name</th>
+                                            <th>Resume Details</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </tfoot> -->
+                                </table>
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,6 @@
 <?php
-    include_once("connect.php");
+    session_start();
+    include_once("../DB/connect.php");
     // define variables and set to empty values
     $reId = $reNameBn = $reDesignation = $reComment = $image = ""; $imgUpload=0;
 
@@ -36,7 +37,7 @@
         reComment = '".$reComment."',";
         if($imgUpload==0){$sql .= "image='".$file_name."',";}
         $sql .="reNameBn = '".$reNameBn."'
-        WHERE reId = '$id'";
+        WHERE reId = '$reId'";
 
         // echo $sql;die();
         if (mysqli_query($conn,$sql)) {

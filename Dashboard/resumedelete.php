@@ -1,10 +1,20 @@
-<?php 
+<?php
     include_once("../DB/connect.php");
     if(isset($_GET["id"])){
-        $sId = $_GET["id"];     
+        $rId = $_GET["id"];
+        // echo $id;
+        $sql = "DELETE FROM resumedb WHERE rId = $rId";
+        $result = mysqli_query($conn, $sql);
+        // $row = mysqli_fetch_assoc($result); 
+
+        if (mysqli_query($conn, $sql)) {
+            // echo "Record deleted successfully";
+          } else {
+            echo "Error deleting record: " . mysqli_error($conn);
+          }
     }
-   
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -120,28 +130,6 @@
                                     <a class="nav-link" href="catlist.php">Category List</a>
                                 </nav>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagescollapseLayout" aria-expanded="false" aria-controls="pagescollapseLayout">
-                                <div class="sb-nav-link-icon"><i class="fas fa-server"></i></div>
-                                Service
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="pagescollapseLayout" aria-labelledby="heading" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="service.php">Service Insert</a>
-                                    <a class="nav-link" href="servicelist.php">Service List</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagescollapseLayout1" aria-expanded="false" aria-controls="pagescollapseLayout1">
-                                <div class="sb-nav-link-icon"><i class="fab fa-readme"></i></div>
-                                Review / Testimonial
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="pagescollapseLayout1" aria-labelledby="heading" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="review.php">Review Insert</a>
-                                    <a class="nav-link" href="reviewlist.php">Review List</a>
-                                </nav>
-                            </div>
                             <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="charts.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
@@ -162,45 +150,14 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Update Service Information</h1>
+                        <h1 class="mt-4 d-flex justify-content-center">Resume Information Delete</h1>
                         <div class="col-md-12">
-                            <div class="form">
-                                <form method="POST" action="../DB/servicUpdateeaction.php" enctype="multipart/form-data">  
-                                    <div class="row">                                   
-                                        <div class="col-md-12">
-                                            <div class="input-field">
-                                                <?php
-                                                    $sql = "SELECT * FROM servicedb WHERE sId = $sId";
-                                                    $res = mysqli_query($conn, $sql);
-                                                    $row = mysqli_fetch_assoc($res);
-                                                ?>
-                                                <div class="mb-3 row">
-                                                    <label for="sName" class="col-sm-2 col-form-label">Service Name</label>
-                                                    <div class="col-sm-10">
-                                                    <input type="text" name="sName"  class="form-control" placeholder="Service Name" value="<?php echo $row["sName"];?>">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="sdetails" class="col-sm-2 col-form-label">Service Details</label>
-                                                    <div class="col-sm-10">
-                                                    <textarea type="text" name="sdetails" class="form-control" placeholder="Service Details" rows="3"><?php echo $row["sdetails"];?></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="image" class="col-sm-2 col-form-label">Image</label>
-                                                    <div class="col-sm-10">
-                                                        <img src="../photos/service/<?php echo $row["image"];?>" height="100" width="100" alt="<?php echo $row["image"];?>" title="<?php echo $row["image"];?>"/>
-                                                        <input class="form-control" type="file" id="image" name="image">
-                                                    </div>
-                                                </div>
-                                                <div class="d-grid">
-                                                    <input type="hidden" name="id" value="<?php echo $sId;?>">
-                                                    <button type="submit" name="submit" class="submit" value="update">Upload</button>
-                                                </div>   
-                                            </div>
-                                        </div>
-                                    </div> 
-                                </form>
+                            <div class="input">
+                                <div class="form  d-flex justify-content-center">
+                                    <form method="POST" action="resumelist.php" enctype="multipart/form-data">  
+                                        <input type="submit" name="submit" value="Delete">  
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,9 +1,9 @@
 <?php 
+    session_start();
     include_once("../DB/connect.php");
     if(isset($_GET["id"])){
-        $sId = $_GET["id"];     
+        $rId  = $_GET["id"];     
     }
-   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -162,40 +162,57 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Update Service Information</h1>
+                        <h1 class="mt-4">Resume Information Update</h1>
                         <div class="col-md-12">
                             <div class="form">
-                                <form method="POST" action="../DB/servicUpdateeaction.php" enctype="multipart/form-data">  
+                                <form method="POST" action="../DB/resumeupdateaction.php" enctype="multipart/form-data">  
                                     <div class="row">                                   
                                         <div class="col-md-12">
                                             <div class="input-field">
                                                 <?php
-                                                    $sql = "SELECT * FROM servicedb WHERE sId = $sId";
+                                                    $sql = "SELECT * FROM resumedb WHERE rId = $rId";
                                                     $res = mysqli_query($conn, $sql);
                                                     $row = mysqli_fetch_assoc($res);
-                                                ?>
+                                                ?>                                          
                                                 <div class="mb-3 row">
-                                                    <label for="sName" class="col-sm-2 col-form-label">Service Name</label>
+                                                    <label for="rHead" class="col-sm-2 col-form-label">Resume Head</label>
                                                     <div class="col-sm-10">
-                                                    <input type="text" name="sName"  class="form-control" placeholder="Service Name" value="<?php echo $row["sName"];?>">
+                                                    <input type="text" name="rHead"  class="form-control" placeholder="Resume Head" value="<?php echo $row["rHead"];?>">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
-                                                    <label for="sdetails" class="col-sm-2 col-form-label">Service Details</label>
+                                                    <label for="rTitle" class="col-sm-2 col-form-label">Resume Title</label>
                                                     <div class="col-sm-10">
-                                                    <textarea type="text" name="sdetails" class="form-control" placeholder="Service Details" rows="3"><?php echo $row["sdetails"];?></textarea>
+                                                    <input type="text" name="rTitle"  class="form-control" placeholder="Resume Title" value="<?php echo $row["rTitle"];?>">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
-                                                    <label for="image" class="col-sm-2 col-form-label">Image</label>
+                                                    <label for="rStartyear" class="col-sm-2 col-form-label">Start Date</label>
                                                     <div class="col-sm-10">
-                                                        <img src="../photos/service/<?php echo $row["image"];?>" height="100" width="100" alt="<?php echo $row["image"];?>" title="<?php echo $row["image"];?>"/>
-                                                        <input class="form-control" type="file" id="image" name="image">
+                                                    <input type="date" name="rStartyear"  class="form-control" placeholder="Start Date" value="<?php echo $row["rStartyear"];?>">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="rEndyears" class="col-sm-2 col-form-label">End Date</label>
+                                                    <div class="col-sm-10">
+                                                    <input type="date" name="rEndyears"  class="form-control" placeholder="End Date" value="<?php echo $row["rEndyears"];?>">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="rname" class="col-sm-2 col-form-label">Resume Name</label>
+                                                    <div class="col-sm-10">
+                                                    <input type="text" name="rname"  class="form-control" placeholder="Resume Name" value="<?php echo $row["rname"];?>">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="rdetails" class="col-sm-2 col-form-label">Resume Details</label>
+                                                    <div class="col-sm-10">
+                                                    <textarea type="text" name="rdetails" class="form-control" placeholder="Resume Details" rows="3"><?php echo $row["rdetails"];?>"</textarea>
                                                     </div>
                                                 </div>
                                                 <div class="d-grid">
-                                                    <input type="hidden" name="id" value="<?php echo $sId;?>">
-                                                    <button type="submit" name="submit" class="submit" value="update">Upload</button>
+                                                    <input type="hidden" name="id" value="<?php echo $rId;?>">
+                                                    <button type="submit" name="submit" class="submit">Update</button>
                                                 </div>   
                                             </div>
                                         </div>

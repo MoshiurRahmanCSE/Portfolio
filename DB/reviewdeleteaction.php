@@ -22,14 +22,14 @@
           $file_type = $_FILES['image']['type'];
     
           //Image upload and set in folder
-          if(move_uploaded_file($file_tmp,"../photos/category/"  . $file_name)){
+          if(move_uploaded_file($file_tmp,"../photos/review/"  . $file_name)){
             echo "Successfully Uploaded.";
           }else{
             echo  "Could not upload the file.";
           }
         }
         // Delete Query  
-        $sql = "DELETE FROM reviewdb WHERE reId = $reId ";
+        $sql = "DELETE FROM reviewdb WHERE reId = $reId";
         // echo $sql; die();
 
         if (mysqli_query($conn, $sql)) {
