@@ -142,7 +142,7 @@
                                     <a class="nav-link" href="reviewlist.php">Review List</a>
                                 </nav>
                             </div>
-                            <div class="sb-sidenav-menu-heading">Addons</div>
+                            <!-- <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="charts.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Charts
@@ -150,7 +150,7 @@
                             <a class="nav-link" href="tables.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Tables
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                     <!-- <div class="sb-sidenav-footer">
@@ -177,37 +177,37 @@
                                                 <div class="mb-3 row">
                                                     <label for="rHead" class="col-sm-2 col-form-label">Resume Head</label>
                                                     <div class="col-sm-10">
-                                                    <input type="text" name="rHead"  class="form-control" placeholder="Resume Head" value="<?php echo $row["rHead"];?>">
+                                                        <input type="text" name="rHead"  class="form-control" placeholder="Resume Head" value="<?php echo $row["rHead"];?>">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="rTitle" class="col-sm-2 col-form-label">Resume Title</label>
                                                     <div class="col-sm-10">
-                                                    <input type="text" name="rTitle"  class="form-control" placeholder="Resume Title" value="<?php echo $row["rTitle"];?>">
+                                                        <input type="text" name="rTitle"  class="form-control" placeholder="Resume Title" value="<?php echo $row["rTitle"];?>">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="rStartyear" class="col-sm-2 col-form-label">Start Date</label>
                                                     <div class="col-sm-10">
-                                                    <input type="date" name="rStartyear"  class="form-control" placeholder="Start Date" value="<?php echo $row["rStartyear"];?>">
+                                                        <input type="date" name="rStartyear"  class="form-control" placeholder="Start Date" value="<?php echo $row["rStartyear"];?>">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="rEndyears" class="col-sm-2 col-form-label">End Date</label>
                                                     <div class="col-sm-10">
-                                                    <input type="date" name="rEndyears"  class="form-control" placeholder="End Date" value="<?php echo $row["rEndyears"];?>">
+                                                        <input type="date" name="rEndyears"  class="form-control" placeholder="End Date" value="<?php echo $row["rEndyears"];?>">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="rname" class="col-sm-2 col-form-label">Resume Name</label>
                                                     <div class="col-sm-10">
-                                                    <input type="text" name="rname"  class="form-control" placeholder="Resume Name" value="<?php echo $row["rname"];?>">
+                                                        <input type="text" name="rname"  class="form-control" placeholder="Resume Name" value="<?php echo $row["rname"];?>">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="rdetails" class="col-sm-2 col-form-label">Resume Details</label>
                                                     <div class="col-sm-10">
-                                                    <textarea type="text" name="rdetails" class="form-control" placeholder="Resume Details" rows="3"><?php echo $row["rdetails"];?>"</textarea>
+                                                        <textarea type="text" name="rdetails" class="form-control" placeholder="Resume Details" rows="3"><?php echo $row["rdetails"];?></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="d-grid">
@@ -222,7 +222,7 @@
                         </div>
                     </div>
                 </main>
-                <footer class="py-4 bg-light mt-auto">
+                <!-- <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; Your Website 2021</div>
@@ -233,7 +233,7 @@
                             </div>
                         </div>
                     </div>
-                </footer>
+                </footer> -->
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

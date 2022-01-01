@@ -1,8 +1,7 @@
 <?php
-    session_start();
     include_once("../DB/connect.php");
     // define variables and set to empty values
-    $rId  = $reNameBn = $rTitle = $rStartyear = $rEndyears = $rname = $rdetails = "";
+    $rId  = $rHead = $rTitle = $rStartyear = $rEndyears = $rname = $rdetails = "";
 
     if (isset($_POST['submit'])){
         $rId  = $_POST['id'];
@@ -15,14 +14,14 @@
 
         //MySQLi Procedural
         // Update Query
-        $sql = "UPDATE reviewdb
+        $sql = "UPDATE resumedb
         SET rHead = '".$rHead."',
         rTitle = '".$rTitle."',
         rStartyear = '".$rStartyear."',
         rEndyears = '".$rEndyears."',
         rname = '".$rname."',
-        rdetails = '".$rdetails."',
-        WHERE rId  = '$rId '";
+        rdetails = '$rdetails'
+        WHERE rId  = '$rId'";
 
         // echo $sql;die();
         if (mysqli_query($conn,$sql)) {

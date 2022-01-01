@@ -171,11 +171,11 @@
                                                                 $sql2 = "SELECT * FROM categorydb WHERE status = 1";
                                                                 $result2 = mysqli_query($conn, $sql2);
                                                                 while($row1 = mysqli_fetch_assoc($result2)){
-                                                                    ?>
-                                                                    <option value="<?php echo $row1["cId"];?>"<?php if($row1["cId"]==$row["cId"]){echo ' selected';}?>><?php echo $row1["cName"];?></option>
-                                                                    <?php
-                                                                }                                                            
                                                             ?>
+                                                                <option value="<?php echo $row1["cId"];?>"<?php if($row1["cId"]==$row["cId"]){echo ' selected';}?>><?php echo $row1["cName"];?></option>
+                                                                <?php
+                                                                    }                                                            
+                                                                ?>
                                                         </select>
                                                     </div>
                                                 </div>                                         
@@ -228,7 +228,7 @@
                         </div>
                     </div>
                 </main>
-                <footer class="py-4 bg-light mt-auto">
+                <!-- <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; Your Website 2021</div>
@@ -239,7 +239,7 @@
                             </div>
                         </div>
                     </div>
-                </footer>
+                </footer> -->
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
