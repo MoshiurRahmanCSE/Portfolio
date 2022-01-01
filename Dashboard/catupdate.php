@@ -154,6 +154,11 @@
                         <h1 class="mt-4">Portfoio Update</h1>
                         <div class="col-md-12">
                             <div class="form">
+                                <?php
+                                    $sql1 = "SELECT * FROM categorydetails WHERE cdId = $cdId";
+                                    $res = mysqli_query($conn, $sql1);
+                                    $row= mysqli_fetch_assoc($res); 
+                                ?>
                                 <form method="POST" action="../DB/catupdateaction.php" enctype="multipart/form-data">  
                                     <div class="row">                                   
                                         <div class="col-md-12">
@@ -163,11 +168,11 @@
                                                     <div class="col-sm-4">
                                                         <select class="form-select" name="categoryid" required>
                                                             <?php
-                                                                $sql = "SELECT * FROM categorydb WHERE status = 1";
-                                                                $result = mysqli_query($conn, $sql);
-                                                                while($row = mysqli_fetch_assoc($result)){
+                                                                $sql2 = "SELECT * FROM categorydb WHERE status = 1";
+                                                                $result2 = mysqli_query($conn, $sql2);
+                                                                while($row1 = mysqli_fetch_assoc($result2)){
                                                                     ?>
-                                                                    <option value="<?php echo $row["cId"];?>"<?php if($row["cId"]==$row["cId"]){echo ' selected';}?>><?php echo $row["cName"];?></option>
+                                                                    <option value="<?php echo $row1["cId"];?>"<?php if($row1["cId"]==$row["cId"]){echo ' selected';}?>><?php echo $row1["cName"];?></option>
                                                                     <?php
                                                                 }                                                            
                                                             ?>
@@ -175,11 +180,6 @@
                                                     </div>
                                                 </div>                                         
                                                 <div class="mb-3 row">
-                                                    <?php
-                                                        $sql1 = "SELECT * FROM categorydetails WHERE cdId = $cdId";
-                                                        $res = mysqli_query($conn, $sql1);
-                                                        $row= mysqli_fetch_assoc($res); 
-                                                    ?>
                                                     <label for="clientName" class="col-sm-2 col-form-label">Client Name</label>
                                                     <div class="col-sm-10">
                                                     <input type="text" name="clientName"  class="form-control" placeholder="Client Name" value="<?php echo $row["clientName"];?>">

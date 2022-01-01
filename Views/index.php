@@ -1,3 +1,9 @@
+<?php 
+  include_once("../DB/connect.php");
+  if(isset($_GET["id"])){
+    $id = $_GET["id"]; 
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,10 +49,23 @@
   <!-- ======= Header ======= -->
   <header id="header">
     <div class="d-flex flex-column">
-
+      <?php
+        $sql = "SELECT id, firstName, lastName, dateOfBirth, website, image, phone, city, degree, email, details FROM biodb";
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_query($conn, $sql)) {
+            // echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+      ?>
+      <?php
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row    
+        while($row = mysqli_fetch_assoc($result)) {
+      ?>
       <div class="profile">
-        <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
-        <h1 class="text-light"><a href="index.html">Alex Smith</a></h1>
+        <img src="../photos/<?php echo $row["image"];?>" alt="<?php echo $row["image"];?>" title="<?php echo $row["image"];?>" class="img-fluid rounded-circle"/>
+        <h1 class="text-light"><a href="index.php"><?php echo $row["firstName"].' '.$row["lastName"];?></a></h1>
         <div class="social-links mt-3 text-center">
           <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
           <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -58,7 +77,7 @@
 
       <nav id="navbar" class="nav-menu navbar">
         <ul>
-          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <!-- <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li> -->
           <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
           <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
           <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
@@ -70,12 +89,12 @@
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+  <!-- <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="hero-container" data-aos="fade-in">
       <h1>Alex Smith</h1>
       <p>I'm <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer"></span></p>
     </div>
-  </section>
+  </section> -->
    <!--  End Hero -->
 
   <main id="main">
@@ -88,10 +107,9 @@
           <h2>About</h2>
           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
-
         <div class="row">
           <div class="col-lg-4" data-aos="fade-right">
-            <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
+            <img src="../photos/<?php echo $row["image"];?>" height="100%" width="100%" alt="<?php echo $row["image"];?>" title="<?php echo $row["image"];?>"/>
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
             <h3>UI/UX Designer &amp; Web Developer.</h3>
@@ -102,30 +120,32 @@
             <div class="row">
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>1 May 1995</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.example.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+123 456 7890</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>New York, USA</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span><?php echo $row["dateOfBirth"];?></span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span><?php echo $row["website"];?></span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span><?php echo $row["city"];?></span></li>
                 </ul>
               </div>
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>30</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>PhEmailone:</strong> <span>email@example.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span><?php echo $row["phone"];?></span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span><?php echo $row["degree"];?></span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>PhEmailone:</strong> <span><?php echo $row["email"];?></span></li>
                 </ul>
               </div>
             </div>
             <p>
-              Officiis eligendi itaque labore et dolorum mollitia officiis optio vero. Quisquam sunt adipisci omnis et ut. Nulla accusantium dolor incidunt officia tempore. Et eius omnis.
-              Cupiditate ut dicta maxime officiis quidem quia. Sed et consectetur qui quia repellendus itaque neque. Aliquid amet quidem ut quaerat cupiditate. Ab et eum qui repellendus omnis culpa magni laudantium dolores.
+              <?php echo $row["details"];?>
             </p>
           </div>
+          <?php } }                                           
+            else {
+              echo "0 results";
+              }
+          ?>
         </div>
-
       </div>
-    </section><!-- End About Section -->
+    </section>
+    <!-- End About Section -->
 
     <!-- ======= Facts Section ======= -->
     <!-- <section id="facts" class="facts">
@@ -177,7 +197,7 @@
     <!-- End Facts Section -->
 
     <!-- ======= Skills Section ======= -->
-    <section id="skills" class="skills section-bg">
+    <!-- <section id="skills" class="skills section-bg">
       <div class="container">
 
         <div class="section-title">
@@ -240,7 +260,8 @@
         </div>
 
       </div>
-    </section><!-- End Skills Section -->
+    </section> -->
+    <!-- End Skills Section -->
 
     <!-- ======= Resume Section ======= -->
     <section id="resume" class="resume">
@@ -252,56 +273,75 @@
         </div>
 
         <div class="row">
+          
           <div class="col-lg-6" data-aos="fade-up">
+            <?php
+              $sql = "SELECT firstName, lastName, city, phone, website, details FROM biodb";
+              $result = mysqli_query($conn, $sql);
+              if (mysqli_query($conn, $sql)) {
+                  // echo "New record created successfully";
+              } else {
+                  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+              }
+            ?>
+            <?php
+              if (mysqli_num_rows($result) > 0) {
+                  // output data of each row    
+              while($row = mysqli_fetch_assoc($result)) {
+            ?>
             <h3 class="resume-title">Sumary</h3>
             <div class="resume-item pb-0">
-              <h4>Alex Smith</h4>
-              <p><em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.</em></p>
+              <h4><?php echo $row["firstName"].'  '.$row["lastName"];?></h4>
+              <p><em><?php echo $row["details"];?></em></p>
               <ul>
-                <li>Portland par 127,Orlando, FL</li>
-                <li>(123) 456-7891</li>
-                <li>alice.barkley@example.com</li>
+                <li><?php echo $row["city"];?></li>
+                <li><?php echo $row["phone"];?></li>
+                <li><?php echo $row["website"];?></li>
               </ul>
+              <?php } }                                           
+                else {
+                  echo "0 results";
+                  }
+              ?>
             </div>
 
-            <h3 class="resume-title">Education</h3>
+            <?php
+              $sql = "SELECT * FROM resumedb";
+              $result = mysqli_query($conn, $sql);
+              if (mysqli_query($conn, $sql)) {
+                  // echo "New record created successfully";
+              } else {
+                  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+              }
+            ?>
+            <?php
+              if (mysqli_num_rows($result) > 0) {
+                  // output data of each row    
+              while($row = mysqli_fetch_assoc($result)) {
+            ?>
+            <h3 class="resume-title"><?php echo $row["rHead"];?></h3>
             <div class="resume-item">
-              <h4>Master of Fine Arts &amp; Graphic Design</h4>
-              <h5>2015 - 2016</h5>
-              <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-              <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
+              <h4><?php echo $row["rTitle"];?> &amp; Graphic Design</h4>
+              <h5><?php echo $row["rStartyear"].' - '.$row["rEndyears"];?></h5>
+              <p><em><?php echo $row["rname"];?></em></p>
+              <p><?php echo $row["rdetails"];?></p>
             </div>
-            <div class="resume-item">
-              <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
-              <h5>2010 - 2014</h5>
-              <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-              <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
-            </div>
-          </div>
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Professional Experience</h3>
+            <h3 class="resume-title"><?php echo $row["rHead"];?></h3>
             <div class="resume-item">
-              <h4>Senior graphic design specialist</h4>
-              <h5>2019 - Present</h5>
-              <p><em>Experion, New York, NY </em></p>
+              <h4><?php echo $row["rTitle"];?></h4>
+              <h5><?php echo $row["rStartyear"].' - '.$row["rEndyears"];?></h5>
+              <p><em><?php echo $row["rname"];?></em></p>
               <ul>
-                <li>Lead in the design, development, and implementation of the graphic, layout, and production communication materials</li>
-                <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project. </li>
-                <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design</li>
-                <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
+                <li><?php echo $row["rdetails"];?></li>
               </ul>
+              <?php } }                                           
+                else {
+                  echo "0 results";
+                  }
+              ?>
             </div>
-            <div class="resume-item">
-              <h4>Graphic design specialist</h4>
-              <h5>2017 - 2018</h5>
-              <p><em>Stepping Stone Advertising, New York, NY</em></p>
-              <ul>
-                <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).</li>
-                <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
-                <li>Recommended and consulted with clients on the most appropriate graphic design</li>
-                <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
-              </ul>
-            </div>
+            
           </div>
         </div>
 
@@ -318,29 +358,67 @@
         </div>
 
         <div class="row" data-aos="fade-up">
+          <?php
+            $sql = "SELECT * FROM categorydb WHERE status = 1";
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_query($conn, $sql)) {
+                // echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            }
+          ?>
+          
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
+              <!-- <li data-filter=".filter" class="filter-active">All</li> -->
+              <?php
+                if (mysqli_num_rows($result) > 0) {
+                    // output data of each row    
+                while($row = mysqli_fetch_assoc($result)) {
+              ?>
+              <li data-filter=".filter-<?php echo $row['catSlug'];?>"> <?php echo $row['cName']; ?> </li>
+
+              <?php } } 
+                else {
+                  echo "0 results";
+                  }
+              ?>
             </ul>
           </div>
+          
         </div>
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
 
+          <?php
+            $sql = "SELECT * FROM categorydetails";
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_query($conn, $sql)) {
+                // echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            }
+          ?>
+          <?php
+            if (mysqli_num_rows($result) > 0) {
+                // output data of each row    
+            while($row = mysqli_fetch_assoc($result)) {
+          ?>
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+              <img  src="../photos/category/<?php echo $row["image"];?>" class="img-fluid" alt="<?php echo $row["image"];?>">
               <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                <a href="portfolio-details.php?id=<?php echo $row["cdId"];?>" title="More Details"><i class="bx bx-link"></i></a>
               </div>
-            </div>
+            </div>           
           </div>
+          <?php } } 
+            else {
+              echo "0 results";
+              }
+          ?>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+          <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-web">
             <div class="portfolio-wrap">
               <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
               <div class="portfolio-links">
@@ -418,12 +496,11 @@
                 <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
               </div>
             </div>
-          </div>
-
+          </div> -->
         </div>
-
       </div>
-    </section><!-- End Portfolio Section -->
+    </section>
+    <!-- End Portfolio Section -->
 
     <!-- ======= Services Section ======= -->
     <section id="services" class="services">
@@ -435,40 +512,33 @@
         </div>
 
         <div class="row">
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
-            <div class="icon"><i class="bi bi-briefcase"></i></div>
-            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+          <?php
+            $sql = "SELECT * FROM servicedb WHERE status = 1";
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_query($conn, $sql)) {
+                // echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            }
+          ?>
+          <?php
+            if (mysqli_num_rows($result) > 0) {
+                // output data of each row    
+            while($row = mysqli_fetch_assoc($result)) {
+          ?>
+          <div class="col-lg-4 col-md-6 icon-box" data-aos-delay="100">
+            <div class="image"><i><img src="../photos/service/<?php echo $row["image"];?>" height="100%" width="100%" alt="<?php echo $row["image"];?>" title="<?php echo $row["image"];?>"/></i></div>
+            <h4 class="title"><?php echo $row["sName"];?></h4>
+            <p class="details"><?php echo $row["sdetails"];?></p>
           </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon"><i class="bi bi-card-checklist"></i></div>
-            <h4 class="title"><a href="">Dolor Sitema</a></h4>
-            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon"><i class="bi bi-bar-chart"></i></div>
-            <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
-            <div class="icon"><i class="bi bi-binoculars"></i></div>
-            <h4 class="title"><a href="">Magni Dolores</a></h4>
-            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
-            <div class="icon"><i class="bi bi-brightness-high"></i></div>
-            <h4 class="title"><a href="">Nemo Enim</a></h4>
-            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="500">
-            <div class="icon"><i class="bi bi-calendar4-week"></i></div>
-            <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
-          </div>
+          <?php
+            }}
+          ?>
         </div>
 
       </div>
-    </section><!-- End Services Section -->
+    </section>
+    <!-- End Services Section -->
 
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials section-bg">
@@ -481,72 +551,36 @@
 
         <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
           <div class="swiper-wrapper">
-
+            <?php
+              $sql = "SELECT * FROM reviewdb WHERE status = 1";
+              $result = mysqli_query($conn, $sql);
+              if (mysqli_query($conn, $sql)) {
+                  // echo "New record created successfully";
+              } else {
+                  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+              }
+            ?>
+            <?php
+              if (mysqli_num_rows($result) > 0) {
+                  // output data of each row    
+              while($row = mysqli_fetch_assoc($result)) {
+            ?>
             <div class="swiper-slide">
               <div class="testimonial-item" data-aos="fade-up">
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                  <?php echo $row["reComment"];?>
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                <h3>Saul Goodman</h3>
-                <h4>Ceo &amp; Founder</h4>
+                <img src="../photos/review/<?php echo $row["image"];?>" height="100%" width="100%" alt="<?php echo $row["image"];?>" title="<?php echo $row["image"];?>"/>
+                <h3><?php echo $row["reNameBn"];?></h3>
+                <h4><?php echo $row["reDesignation"];?></h4>
               </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item" data-aos="fade-up" data-aos-delay="100">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                <h3>Sara Wilsson</h3>
-                <h4>Designer</h4>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item" data-aos="fade-up" data-aos-delay="200">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                <h3>Jena Karlis</h3>
-                <h4>Store Owner</h4>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item" data-aos="fade-up" data-aos-delay="300">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                <h3>Matt Brandon</h3>
-                <h4>Freelancer</h4>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item" data-aos="fade-up" data-aos-delay="400">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                <h3>John Larson</h3>
-                <h4>Entrepreneur</h4>
-              </div>
-            </div><!-- End testimonial item -->
-
+            </div>
+            <!-- End testimonial item -->
+            <?php
+              }}
+            ?>
           </div>
           <div class="swiper-pagination"></div>
         </div>
@@ -565,24 +599,29 @@
 
         <div class="row" data-aos="fade-in">
 
+          <?php
+            $sql = "SELECT city, email, phone  FROM biodb";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($result);
+          ?>
           <div class="col-lg-5 d-flex align-items-stretch">
             <div class="info">
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
                 <h4>Location:</h4>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <p><?php echo $row["city"];?></p>
               </div>
 
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>info@example.com</p>
+                <p><?php echo $row["email"];?></p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Call:</h4>
-                <p>+1 5589 55488 55s</p>
+                <p><?php echo $row["phone"];?></p>
               </div>
 
               <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>

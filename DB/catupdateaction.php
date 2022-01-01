@@ -3,12 +3,13 @@
     include_once("../DB/connect.php");
 
     //define variables and set to empty values
-    $cId = $clientName = $projectURL = $projectDate = $image = $shortDesc = ""; $imgUpload = 0;
+    $cId = $clientName = $cId = $projectURL = $projectDate = $image = $shortDesc = ""; $imgUpload = 0;
 
     //Registration Form Submit
     if(isset($_POST['submit'])){
         $cdId = $_POST['id'];
         $clientName = $_POST['clientName'];
+        $cId = $_POST['cId'];
         $projectURL = $_POST['projectURL'];
         $projectDate = $_POST['projectDate'];
         $shortDesc = $_POST['shortDesc'];

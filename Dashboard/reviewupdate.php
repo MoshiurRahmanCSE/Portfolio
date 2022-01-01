@@ -165,7 +165,7 @@
                         <h1 class="mt-4">Review/ Testimonial Information Update</h1>
                         <div class="col-md-12">
                             <div class="form">
-                                <form method="POST" action="../DB/reviewaction.php" enctype="multipart/form-data">  
+                                <form method="POST" action="../DB/reviewupdateaction.php" enctype="multipart/form-data">  
                                     <div class="row">                                   
                                         <div class="col-md-12">
                                             <div class="input-field">                                       

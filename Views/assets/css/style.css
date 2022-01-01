@@ -256,7 +256,7 @@ h1, h2, h3, h4, h5, h6 {
 # Sections General
 --------------------------------------------------------------*/
 section {
-  padding: 60px 0;
+  padding: 15px 0;
   overflow: hidden;
 }
 
@@ -519,7 +519,7 @@ section {
   text-align: center;
   background: rgba(20, 157, 221, 0.75);
   transition: 0.3s;
-  width: 50%;
+  width: 100%;
 }
 .portfolio .portfolio-wrap .portfolio-links a:hover {
   background: rgba(20, 157, 221, 0.95);
@@ -623,7 +623,6 @@ section {
   color: #149ddd;
 }
 .services .title {
-  margin-left: 80px;
   font-weight: 700;
   margin-bottom: 15px;
   font-size: 18px;

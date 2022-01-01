@@ -20,16 +20,16 @@
 			include('Portfolio/Dashboard/login.php');
 			header('location: /Portfolio/Dashboard/index.php');
 			
-			if($email){
-				echo "Login Successfully";
-			}else{
-				echo "Invalid  Email";
-			}
+			// if($email){
+			// 	echo "Login Successfully";
+			// }else{
+			// 	echo "Invalid  Email";
+			// }
 		}else{
-			echo "Wrong Password";
+			echo "Login Failed";
 		}
 	}else{
-		echo "Email & Password Invalid";
+		echo "Error";
 		header('location: /Portfolio/Dashboard/login.php');
 	}
 

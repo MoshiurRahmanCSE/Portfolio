@@ -15,20 +15,32 @@
 
         //register insert sql
         $sql = "INSERT INTO biodb(firstName, lastName, email, password) VALUES ('$firstName','$lastName','$email','$password')";
+        $sqlCheck = "SELECT * FROM biodb WHERE Email = '$email' ";
         $result = mysqli_query($conn,$sql);
-        if (mysqli_query($conn,$sql)) {
-            echo "New record created successfully";
-            header("Location: ../Dashboard/login.php");
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
-        if(is_array($rows1)){
-			// $result = mysqli_fetch_assoc($res);
-			$_SESSION['email'] = $row['email'];
-			$_SESSION['password'] = $row['password'];
+        $result1 = mysqli_query($conn,$sqlCheck);
+        if (mysqli_query($conn,$sqlCheck)) {
+            if(mysqli_num_rows($result1) > 0){
+                while($row = mysqli_fetch_array($result1)){
+                    if($row['Email']){
+                        echo "email available";
+                    }
+                    else{
+                        echo "not available";
+                    }
+                }
+            }
+        //     echo "New record created successfully";
+        //     header("Location: ../Dashboard/login.php");
+        // } else {
+        //     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        // }
+        // if(is_array($rows1)){
+		// 	// $result = mysqli_fetch_assoc($res);
+		// 	$_SESSION['email'] = $row['email'];
+		// 	$_SESSION['password'] = $row['password'];
 		}
     }
-    if(isset($_SESSION["email"])){
-        header('location: /Portfolio/Dashboard/login.php');
-    }
+    // if(isset($_SESSION["email"])){
+    //     header('location: /Portfolio/Dashboard/login.php');
+    // }
 ?>
