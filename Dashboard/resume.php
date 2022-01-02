@@ -156,7 +156,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Resume Information</h1>
+                        <h1 class="mt-4 d-flex justify-content-center">Resume Information</h1>
                         <div class="col-md-12">
                             <div class="form">
                                 <form method="POST" action="../DB/resumeaction.php" enctype="multipart/form-data">  

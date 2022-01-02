@@ -141,7 +141,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Portfolio Details</h1>
+                        <h1 class="mt-4 d-flex justify-content-center">Portfolio Details</h1>
                         <div class="col-md-12">
                             <div class="input-field">
                                 <!-- Inner Join Start-->

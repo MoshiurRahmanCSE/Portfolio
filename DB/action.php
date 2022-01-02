@@ -22,25 +22,13 @@
             if(mysqli_num_rows($result1) > 0){
                 while($row = mysqli_fetch_array($result1)){
                     if($row['Email']){
-                        echo "email available";
+                        echo "Email Available";
                     }
                     else{
-                        echo "not available";
+                        echo "Email is not available";
                     }
                 }
             }
-        //     echo "New record created successfully";
-        //     header("Location: ../Dashboard/login.php");
-        // } else {
-        //     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        // }
-        // if(is_array($rows1)){
-		// 	// $result = mysqli_fetch_assoc($res);
-		// 	$_SESSION['email'] = $row['email'];
-		// 	$_SESSION['password'] = $row['password'];
 		}
     }
-    // if(isset($_SESSION["email"])){
-    //     header('location: /Portfolio/Dashboard/login.php');
-    // }
 ?>

@@ -151,7 +151,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Portfoio Update</h1>
+                        <h1 class="mt-4 d-flex justify-content-center">Portfoio Update</h1>
                         <div class="col-md-12">
                             <div class="form">
                                 <?php

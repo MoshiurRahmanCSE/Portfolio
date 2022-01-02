@@ -171,7 +171,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Update Service Information</h1>
+                        <h1 class="mt-4 d-flex justify-content-center">Update Service Information</h1>
                         <div class="col-md-12">
                             <div class="form">
                                 <div class="input">
