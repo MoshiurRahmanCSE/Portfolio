@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include_once("../DB/connect.php");
     if(isset($_GET["id"])){
         $rId = $_GET["id"];

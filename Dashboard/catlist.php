@@ -1,4 +1,7 @@
-<?php include_once("../DB/connect.php");?>
+<?php
+    session_start();
+    include_once("../DB/connect.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
