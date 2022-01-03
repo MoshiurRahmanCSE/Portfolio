@@ -306,7 +306,7 @@
                 // output data of each row    
             while($row = mysqli_fetch_assoc($result)) {
           ?>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <div class="col-lg-4 col-md-6 portfolio-item">
             <div class="portfolio-wrap">
               <img  src="../photos/category/<?php echo $row["image"];?>" class="img-fluid" alt="<?php echo $row["image"];?>">
               <div class="portfolio-links">
