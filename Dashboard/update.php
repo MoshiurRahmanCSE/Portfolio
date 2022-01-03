@@ -1,6 +1,7 @@
-<?php 
-    session_start();
+<?php
     include_once("../DB/connect.php");
+    session_start();
+    header("location: login.php");
     if(isset($_GET["id"])){
         $id = $_GET["id"];
         $sql = "SELECT * FROM biodb WHERE id = $id";

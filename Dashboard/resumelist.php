@@ -1,6 +1,7 @@
 <?php 
+    include_once("../DB/connect.php");
     session_start();
-    include_once("../DB/connect.php");;
+    header("location: login.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
