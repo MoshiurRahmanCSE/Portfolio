@@ -55,8 +55,7 @@
         email = '".$email."',
         city = '".$city."',
         details = '".$details."',
-        location = '".$location."',
-";
+        location = '".$location."',";
         if($imgUpload==0){$sql .= "image='".$file_name."',";}
         $sql .="email = '".$email."'
         WHERE id = '$id'";

@@ -1,7 +1,6 @@
 <?php 
-    include_once("../DB/connect.php");
     session_start();
-    header("location: login.php");
+    include_once("../DB/connect.php");
     if(isset($_GET["id"])){
         $reId  = $_GET["id"];     
     }
@@ -172,7 +171,7 @@
                                             <div class="input-field">                                       
                                                 <div class="mb-3 row">
                                                     <?php
-                                                        $sql = "SELECT * FROM reviewdb WHERE reId = $reId";
+                                                        $sql = "SELECT * FROM reviewdb";
                                                         $res = mysqli_query($conn, $sql);
                                                         $row = mysqli_fetch_assoc($res);
                                                     ?> 

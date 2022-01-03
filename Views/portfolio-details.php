@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Portfolio Details - iPortfolio Bootstrap Template</title>
+  <title>Project Information Details - iPortfolio Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -93,12 +93,11 @@
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
-
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Portfoio Details</h2>
+          <h2>Project Information Details</h2>
           <ol>
             <li><a href="index.php">Home</a></li>
-            <li>Portfoio Details</li>
+            <li>Project Details</li>
           </ol>
         </div>
         <?php } }                                           
@@ -106,16 +105,14 @@
             echo "0 results";
             }
         ?>
-
       </div>
-    </section><!-- End Breadcrumbs -->
+    </section>
+    <!-- End Breadcrumbs -->
 
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
       <div class="container">
-
         <div class="row gy-4">
-
           <?php
             $sql = "SELECT * FROM categorydetails WHERE cdId = $cdId";
             $result = mysqli_query($conn, $sql);
@@ -124,19 +121,9 @@
           <div class="col-lg-8">
             <div class="portfolio-details-slider swiper">
               <div class="swiper-wrapper align-items-center">
-
                 <div class="swiper">
                   <img src="../photos/category/<?php echo $row["image"];?>" alt="<?php echo $row["image"];?>">
                 </div>
-
-                <!-- <div class="swiper-slide">
-                  <img src="assets/img/portfolio/portfolio-details-2.jpg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="assets/img/portfolio/portfolio-details-3.jpg" alt="">
-                </div> -->
-
               </div>
               <div class="swiper-pagination"></div>
             </div>

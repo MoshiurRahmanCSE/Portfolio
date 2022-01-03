@@ -1,7 +1,6 @@
 <?php 
-    include_once("../DB/connect.php");
     session_start();
-    header("location: login.php");
+    include_once("../DB/connect.php");
     if(isset($_GET["id"])){
         $sId = $_GET["id"];     
     }

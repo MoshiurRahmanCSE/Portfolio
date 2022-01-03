@@ -1,7 +1,6 @@
 <?php
-    include_once("../DB/connect.php");
     session_start();
-    header("location: login.php");
+    include_once("../DB/connect.php");
     if(isset($_GET["id"])){
         $id = $_GET["id"];
         $sql = "SELECT * FROM biodb WHERE id = $id";
@@ -124,8 +123,8 @@
                                                     <input type="hidden" name="id" value="<?php echo $id;?>">
                                                     <!-- <div class="d-grid"><a class="btn btn-primary btn-block" name="submit" type="submit" value="update">UPDATE</a></div> -->
                                                     <div class="d-grid"><button type="submit" name="submit" value="update">UPDATE</button></div>
-                                                    <br>
-                                                    <div class="d-grid"><a class="btn btn-primary btn-block" name="back" type="submit" href="tables.php">BACK</a></div>
+                                                    <!-- <br>
+                                                    <div class="d-grid"><a class="btn btn-primary btn-block" name="back" type="submit" href="tables.php">BACK</a></div> -->
                                                 </div>
                                             </form>
                                         </div>

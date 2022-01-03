@@ -1,7 +1,6 @@
 <?php 
-    include_once("../DB/connect.php");
     session_start();
-    header("location: login.php");
+    include_once("../DB/connect.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -163,11 +162,11 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Head</th>
-                                            <th>Education Title</th>
+                                            <th>Title</th>
                                             <th>Start Year</th>
                                             <th>End Year</th>
                                             <th>Name</th>
-                                            <th>Education Details</th>
+                                            <th>Details</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>                                    
@@ -196,11 +195,11 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Head</th>
-                                            <th>Education Title</th>
+                                            <th>Title</th>
                                             <th>Start Year</th>
                                             <th>End Year</th>
                                             <th>Name</th>
-                                            <th>Education Details</th>
+                                            <th>Details</th>
                                             <th>Status</th>
                                         </tr>
                                     </tfoot>

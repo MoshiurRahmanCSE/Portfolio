@@ -1,6 +1,6 @@
-<?php 
-    include_once("../DB/connect.php");
+<?php
     session_start();
+    include_once("../DB/connect.php");
     if(!isset($_SESSION['email'])){
         header('location: login.php');
     }
