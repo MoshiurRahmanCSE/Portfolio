@@ -219,7 +219,9 @@
                                                 <div class="d-grid">
                                                     <input type="hidden" name="id" value="<?php echo $cdId;?>">
                                                     <button type="submit" name="submit" class="update" value="update">Update</button>
-                                                </div>   
+                                                </div>
+                                                <br>
+                                                <div class="d-grid"><a class="btn btn-primary" name="back" type="submit">BACK</a></div>
                                             </div>
                                         </div>
                                     </div> 
