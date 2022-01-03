@@ -51,13 +51,13 @@
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Resume
+                                Education
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="resume.php">Resume Insert</a>
-                                    <a class="nav-link" href="resumelist.php">Resume List</a>
+                                    <a class="nav-link" href="resume.php">Educational Information Insert</a>
+                                    <a class="nav-link" href="resumelist.php">Educational Information List</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -79,8 +79,7 @@
                                                 $result = mysqli_query($conn,$sql);
                                                 // var_dump($result);
                                                 // die();
-                                                if (mysqli_num_rows($result) > 0) {
-                                                    // output data of each row    
+                                                if (mysqli_num_rows($result) > 0) {   
                                                     while($row = mysqli_fetch_assoc($result)) {
                                             ?>
                                            
@@ -94,13 +93,13 @@
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagescollapseLayouts" aria-expanded="false" aria-controls="pagescollapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-list-alt"></i></div>
-                                Category
+                                Project Information
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="pagescollapseLayouts" aria-labelledby="heading" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="catinsert.php">Category Insert</a>
-                                    <a class="nav-link" href="catlist.php">Category List</a>
+                                    <a class="nav-link" href="catinsert.php">Project Information Insert</a>
+                                    <a class="nav-link" href="catlist.php">Project Information List</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagescollapseLayout" aria-expanded="false" aria-controls="pagescollapseLayout">
@@ -176,17 +175,13 @@
                                                 <td><?php echo $row["sdetails"];?></td>
                                                 <td><img src="../photos/service/<?php echo $row["image"];?>" height="100" width="100" alt="<?php echo $row["image"];?>" title="<?php echo $row["image"];?>"/></td>
                                                 <td>
-                                                    <a href="serviceupdate.php?id=<?php echo $row["sId"];?>">
-                                                        <button>Update</button>
-                                                    </a>
-                                                    <a href="servicedelete.php?id=<?php echo $row["sId"];?>">
-                                                        <button>Delete</button>
-                                                    </a> 
+                                                    <a class="btn btn-info" href="serviceupdate.php?id=<?php echo $row["sId"];?>">Update</a>
+                                                    <a class="btn btn-danger" onclick="return confirm('Are you sure to delete this item?')" href="servicedelete.php?id=<?php echo $row["sId"];?>">Delete</a> 
                                                 </td>
                                             </tr>
                                         <?php }}   ?>
                                     </tbody>
-                                    <!-- <tfoot>
+                                    <tfoot>
                                         <tr>
                                             <th>Service Id</th>
                                             <th>Service Name</th>
@@ -194,7 +189,7 @@
                                             <th>Image</th>
                                             <th>Status</th>
                                         </tr>
-                                    </tfoot> -->
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>

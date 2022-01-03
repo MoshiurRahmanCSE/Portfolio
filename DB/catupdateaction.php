@@ -24,10 +24,10 @@
             //Image upload and set in folder
             if(move_uploaded_file($file_tmp,"../photos/category/"  .$file_name)){
                 echo "Successfully Uploaded.";
-                $imgUpload=1;
+                $imgUpload=0;
             }else{
                 echo  "Could not upload the file.";
-                $imgUpload=2;
+                $imgUpload=1;
             }
         }
 

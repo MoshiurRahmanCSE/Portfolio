@@ -21,8 +21,9 @@
         if (mysqli_query($conn,$sqlCheck)) {
             if(mysqli_num_rows($result1) > 0){
                 while($row = mysqli_fetch_array($result1)){
-                    if($row['Email']){
-                        echo "Email Available";
+                    if($row['email']){
+                        // echo "Email Available";
+                        header("Location:  ../Dashboard/index.php");
                     }
                     else{
                         echo "Email is not available";

@@ -38,8 +38,8 @@
         // echo $sql; die();
 
         if (mysqli_query($conn, $sql)) {
-            echo "New record created successfully";
-            header("Location: result.php");
+            echo "Record deleted successfully";
+            header("Location: catlist.php");
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }

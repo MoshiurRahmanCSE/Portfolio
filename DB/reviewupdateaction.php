@@ -26,7 +26,7 @@
                 $imgUpload=1;
             }
             // echo $sql; die();
-        }
+          }
 
 
         //MySQLi Procedural

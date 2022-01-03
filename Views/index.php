@@ -173,7 +173,7 @@
                   // output data of each row    
               while($row = mysqli_fetch_assoc($result)) {
             ?>
-            <h3 class="resume-title">Sumary</h3>
+            <h3 class="resume-title">Summary</h3>
             <div class="resume-item pb-0">
               <h4><?php echo $row["firstName"].'  '.$row["lastName"];?></h4>
               <p><em><?php echo $row["details"];?></em></p>
@@ -190,7 +190,7 @@
             </div>
 
             <?php
-              $sql = "SELECT * FROM resumedb";
+              $sql = "SELECT * FROM resumedb WHERE rId=6";
               $result = mysqli_query($conn, $sql);
               if (mysqli_query($conn, $sql)) {
                   // echo "New record created successfully";
@@ -209,7 +209,27 @@
               <h5><?php echo $row["rStartyear"].' - '.$row["rEndyears"];?></h5>
               <p><em><?php echo $row["rname"];?></em></p>
               <p><?php echo $row["rdetails"];?></p>
+              <?php } }                                           
+                else {
+                  echo "0 results";
+                  }
+              ?>
             </div>
+          </div>
+            <?php
+              $sql = "SELECT * FROM resumedb WHERE rId=7";
+              $result = mysqli_query($conn, $sql);
+              if (mysqli_query($conn, $sql)) {
+                  // echo "New record created successfully";
+              } else {
+                  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+              }
+            ?>
+            <?php
+              if (mysqli_num_rows($result) > 0) {
+                  // output data of each row    
+              while($row = mysqli_fetch_assoc($result)) {
+            ?>
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <h3 class="resume-title"><?php echo $row["rHead"];?></h3>
             <div class="resume-item">
@@ -224,6 +244,7 @@
                   echo "0 results";
                   }
               ?>
+              
             </div>
             
           </div>
@@ -255,26 +276,22 @@
           
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
-              <!-- <li data-filter=".filter" class="filter-active">All</li> -->
               <?php
                 if (mysqli_num_rows($result) > 0) {
                     // output data of each row    
                 while($row = mysqli_fetch_assoc($result)) {
               ?>
               <li data-filter=".filter-<?php echo $row['catSlug'];?>"> <?php echo $row['cName']; ?> </li>
-
               <?php } } 
                 else {
                   echo "0 results";
                   }
               ?>
             </ul>
-          </div>
-          
+          </div>          
         </div>
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-
           <?php
             $sql = "SELECT * FROM categorydetails";
             $result = mysqli_query($conn, $sql);
@@ -294,14 +311,15 @@
               <img  src="../photos/category/<?php echo $row["image"];?>" class="img-fluid" alt="<?php echo $row["image"];?>">
               <div class="portfolio-links">
                 <a href="portfolio-details.php?id=<?php echo $row["cdId"];?>" title="More Details"><i class="bx bx-link"></i></a>
+                <?php } } 
+                  else {
+                    echo "0 results";
+                    }
+                ?>
               </div>
             </div>           
           </div>
-          <?php } } 
-            else {
-              echo "0 results";
-              }
-          ?>
+        
 
           <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-web">
             <div class="portfolio-wrap">

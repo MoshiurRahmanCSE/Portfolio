@@ -18,10 +18,13 @@
           //Image upload and set in folder
           if(move_uploaded_file($file_tmp,"../photos/service/"  . $file_name)){
             echo "Successfully Uploaded.";
+            $imgUpload=0;
           }else{
             echo  "Could not upload the file.";
+            $imgUpload=1;
           }
-        }        
+        }
+
         //MySQLi Procedural
         // Insert Query
         $sql = "INSERT INTO servicedb (sId, sName, sdetails, image) VALUES ('$sId','".$sName."','".$sdetails."','".$file_name."')";

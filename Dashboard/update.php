@@ -45,7 +45,7 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-floating">
-                                                            <input class="form-control" id="birthday" type="date" name="dateOfBirth" placeholder="Enter Your Birthday" />
+                                                            <input class="form-control" id="birthday" type="date" name="dateOfBirth" placeholder="Enter Your Birthday" value="<?php echo $row["dateOfBirth"];?>"/>
                                                             <label for="birthday">Date of Birth</label>
                                                         </div>
                                                     </div>
@@ -59,13 +59,13 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-floating">
-                                                            <input class="form-control" id="inputWebsite" type="website" name="website" placeholder="www.website.com" />
+                                                            <input class="form-control" id="inputWebsite" type="website" name="website" placeholder="www.website.com" value="<?php echo $row["website"];?>"/>
                                                             <label for="inputWebsite">Your Website</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-floating">
-                                                            <input class="form-control" id="text" type="text" name="degree" placeholder="Enter Your Degree" />
+                                                            <input class="form-control" id="text" type="text" name="degree" placeholder="Enter Your Degree" value="<?php echo $row["degree"];?>"/>
                                                             <label for="inputText">Enter your Degree</label>
                                                         </div>
                                                     </div>
@@ -73,32 +73,33 @@
                                                 <div class="row mb-2">
                                                     <div class="col-md-4">
                                                         <div class="form-floating">
-                                                            <input class="form-control" id="text" type="text" name="city" placeholder="Enter Your City Name" />
+                                                            <input class="form-control" id="text" type="text" name="city" placeholder="Enter Your City Name" value="<?php echo $row["city"];?>"/>
                                                             <label for="text">Your City</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-floating">
-                                                            <input class="form-control" id="phone" type="tel" name="phone" placeholder="Enter Phone Number" />
+                                                            <input class="form-control" id="phone" type="tel" name="phone" placeholder="Enter Phone Number" value="<?php echo $row["phone"];?>"/>
                                                             <label for="phone">Your Phone Number</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-floating">
-                                                            <input class="form-control" id="text" type="text" name="location" placeholder="Enter Your Address" />
+                                                            <input class="form-control" id="text" type="text" name="location" placeholder="Enter Your Address" value="<?php echo $row["location"];?>"/>
                                                             <label for="text">Set Location</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-2">
                                                     <div class="col-md-4">
+                                                    <img src="../photos/<?php echo $row["image"];?>" height="100" width="100" alt="<?php echo $row["image"];?>" title="<?php echo $row["image"];?>"/>
                                                         <input class="form-control" type="file" id="image" name="image">
                                                     </div>
                                                 </div>
                                                 <div class="row mb-2">
                                                     <div class="col-md-6">
                                                         <div class="form-floating">
-                                                            <textarea class="form-control" type="text" name="details" placeholder="Enter Your Details" rows="13"></textarea>
+                                                            <textarea class="form-control" type="text" name="details" placeholder="Enter Your Details" rows="13" value="<?php echo $row["details"];?>"></textarea>
                                                             <label for="short-description">Write Your Details</label>
                                                         </div>
                                                     </div>

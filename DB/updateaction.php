@@ -18,11 +18,11 @@
         $city = $_POST['city'];
         $details = $_POST['details'];
         $location = $_POST['location'];
-        $map = $_POST['map'];
-        $facebook_icons = $_POST['facebook_icons'];
-        $instagram_icons = $_POST['instagram_icons'];
-        $twitter_icons = $_POST['twitter_icons'];
-        $skype_icons = $_POST['skype_icons'];
+        // $map = $_POST['map'];
+        // $facebook_icons = $_POST['facebook_icons'];
+        // $instagram_icons = $_POST['instagram_icons'];
+        // $twitter_icons = $_POST['twitter_icons'];
+        // $skype_icons = $_POST['skype_icons'];
         $password = $_POST['password'];
 
         // Image upload and save file
@@ -56,11 +56,7 @@
         city = '".$city."',
         details = '".$details."',
         location = '".$location."',
-        map = '".$map."',
-        facebook_icons = '".$facebook_icons."',
-        instagram_icons = '".$instagram_icons."',
-        twitter_icons = '".$twitter_icons."',
-        skype_icons = '".$facebook_icons."',";
+";
         if($imgUpload==0){$sql .= "image='".$file_name."',";}
         $sql .="email = '".$email."'
         WHERE id = '$id'";

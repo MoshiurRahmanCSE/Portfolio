@@ -58,13 +58,13 @@
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Resume
+                                Education
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="resume.php">Resume Insert</a>
-                                    <a class="nav-link" href="resumelist.php">Resume List</a>
+                                    <a class="nav-link" href="resume.php">Educational Information Insert</a>
+                                    <a class="nav-link" href="resumelist.php">Educational Information List</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -112,13 +112,13 @@
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagescollapseLayouts" aria-expanded="false" aria-controls="pagescollapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-list-alt"></i></div>
-                                Category
+                                Project Information
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="pagescollapseLayouts" aria-labelledby="heading" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="catinsert.php">Category Insert</a>
-                                    <a class="nav-link" href="catlist.php">Category List</a>
+                                    <a class="nav-link" href="catinsert.php">Project Information Insert</a>
+                                    <a class="nav-link" href="catlist.php">Project Information List</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagescollapseLayout" aria-expanded="false" aria-controls="pagescollapseLayout">
@@ -163,7 +163,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4 d-flex justify-content-center">Portfolio</h1>
+                        <h1 class="mt-4 d-flex justify-content-center">Project Information</h1>
                         <div class="col-md-12">
                             <div class="form">
                                 <form method="POST" action="../DB/cataction.php" enctype="multipart/form-data">  
@@ -171,7 +171,7 @@
                                         <div class="col-md-12">
                                             <div class="input-field">
                                                 <div class="mb-3 row">
-                                                    <label for="categoryid" class="col-sm-2 col-form-label">Category</label>
+                                                    <label for="categoryid" class="col-sm-2 col-form-label"> List of Category</label>
                                                     <div class="col-sm-4">
                                                         <select class="form-select" name="categoryid" required>
                                                             <?php
