@@ -1,6 +1,9 @@
 <?php
     session_start();
     include_once("../DB/connect.php");
+    if(!isset($_SESSION['email'])){
+        header('location: login.php');
+    }
     if(isset($_GET["id"])){
         $id = $_GET["id"];
         $sql = "SELECT * FROM biodb WHERE id = $id";
@@ -121,37 +124,17 @@
                                                 
                                                 <div class="mt-4 mb-0">
                                                     <input type="hidden" name="id" value="<?php echo $id;?>">
-                                                    <!-- <div class="d-grid"><a class="btn btn-primary btn-block" name="submit" type="submit" value="update">UPDATE</a></div> -->
                                                     <div class="d-grid"><button type="submit" name="submit" value="update">UPDATE</button></div>
-                                                    <!-- <br>
-                                                    <div class="d-grid"><a class="btn btn-primary btn-block" name="back" type="submit" href="tables.php">BACK</a></div> -->
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
-                                    <!-- <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="login.php">Have an account? Go to login</a></div>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </main>
             </div>
-            <!-- <div id="layoutAuthentication_footer">
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2021</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div> -->
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

@@ -216,20 +216,21 @@
               ?>
             </div>
           </div>
-            <?php
-              $sql = "SELECT * FROM resumedb WHERE rId=7";
-              $result = mysqli_query($conn, $sql);
-              if (mysqli_query($conn, $sql)) {
-                  // echo "New record created successfully";
-              } else {
-                  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-              }
-            ?>
-            <?php
-              if (mysqli_num_rows($result) > 0) {
-                  // output data of each row    
-              while($row = mysqli_fetch_assoc($result)) {
-            ?>
+          
+          <?php
+            $sql = "SELECT * FROM resumedb WHERE rId=7";
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_query($conn, $sql)) {
+                // echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            }
+          ?>
+          <?php
+            if (mysqli_num_rows($result) > 0) {
+                // output data of each row    
+            while($row = mysqli_fetch_assoc($result)) {
+          ?>
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <h3 class="resume-title"><?php echo $row["rHead"];?></h3>
             <div class="resume-item">
@@ -243,13 +244,39 @@
                 else {
                   echo "0 results";
                   }
-              ?>
-              
+              ?>  
             </div>
-            
+            <?php
+              $sql = "SELECT * FROM resumedb WHERE rId=11";
+              $result = mysqli_query($conn, $sql);
+              if (mysqli_query($conn, $sql)) {
+                  // echo "New record created successfully";
+              } else {
+                  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+              }
+            ?>
+            <?php
+              if (mysqli_num_rows($result) > 0) {
+                  // output data of each row    
+              while($row = mysqli_fetch_assoc($result)) {
+            ?>
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="resume-item">
+                <h4><?php echo $row["rTitle"];?></h4>
+                <h5><?php echo $row["rStartyear"].' - '.$row["rEndyears"];?></h5>
+                <p><em><?php echo $row["rname"];?></em></p>
+                <ul>
+                  <li><?php echo $row["rdetails"];?></li>
+                </ul>
+                <?php } }                                           
+                  else {
+                    echo "0 results";
+                  }
+                ?> 
+              </div>  
+            </div> 
           </div>
         </div>
-
       </div>
     </section>
     <!-- End Resume Section -->
